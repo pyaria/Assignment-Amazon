@@ -4,15 +4,20 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  # resources :products
-  get '/products' => 'products#index', as: :products
-  get '/products/new' => 'products#new', as: :new_product
-  post '/products' => 'products#create'
-  get '/products/:id' => 'products#show', as: :product
-  get '/products/:id/edit' => 'products#edit', as: :edit_product
-  patch '/products/:id' => 'products#update'
-  delete '/products/:id' => 'products#destroy'
-  post '/products/:id' => 'products#show'
+  resources :products do
+    get(:search, {on: :collection})
+    get(:search, {on: :member})
+    get(:search)
+    resources :reviews
+  end
+  # get '/products' => 'products#index', as: :products
+  # get '/products/new' => 'products#new', as: :new_product
+  # post '/products' => 'products#create'
+  # get '/products/:id' => 'products#show', as: :product
+  # get '/products/:id/edit' => 'products#edit', as: :edit_product
+  # patch '/products/:id' => 'products#update'
+  # delete '/products/:id' => 'products#destroy'
+  # post '/products/:id' => 'products#show'
 
 # new_product_path	GET	/products/new(.:format)	products#new
 # products_path	POST	/products(.:format)	products#create

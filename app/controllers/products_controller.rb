@@ -10,6 +10,13 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @review = Review.new
+    reviews = Review.where(product_id: params[:id])
+    @r5 = Review.where(rating: "5")
+    @r4 = Review.where(rating: "4")
+    @r3 = Review.where(rating: "3")
+    @r2 = Review.where(rating: "2")
+    @r1 = Review.where(rating: "1")
   end
 
   def index

@@ -16,3 +16,65 @@
 <!-- # <%= link_to "Delete", product_path(@product) %> -->
 <%= link_to("Delete", product_path(@product), {method: :delete,
   data: {confirm: "Are you sure?"}}) %>
+
+<h1>Leave a review</h1>
+  <%= form_for [@product, @review] do |f|%>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= f.label :rating %>
+      <%= f.radio_button :rating, "5"%>
+      <%= f.label "5" %>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <%= f.radio_button :rating, "4"%>
+      <%= f.label "4" %>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <%= f.radio_button :rating, "3"%>
+      <%= f.label "3" %>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <%= f.radio_button :rating, "2"%>
+      <%= f.label "2" %>
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <%= f.radio_button :rating, "1"%>
+      <%= f.label "1" %>
+      <span class="glyphicon glyphicon-star" aria-hidden="true">
+    </div>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+<h1>All reviews</h1>
+<% @r5.each do |r| %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <h3><%= r.title %>, <%= r.rating %></h3>
+  <p><%= r.body %></p>
+  <hr>
+<% end %>
+<% @r4.each do |r| %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <h3><%= r.title %>, <%= r.rating %></h3>
+  <p><%= r.body %></p>
+  <hr>
+<% end %>
+<% @r3.each do |r| %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <h3><%= r.title %>, <%= r.rating %></h3>
+  <p><%= r.body %></p>
+  <hr>
+<% end %>
+<% @r2.each do |r| %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <h3><%= r.title %>, <%= r.rating %></h3>
+  <p><%= r.body %></p>
+  <hr>
+<% end %>
+<% @r1.each do |r| %>
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <h3><%= r.title %>, <%= r.rating %></h3>
+  <p><%= r.body %></p>
+  <hr>
+<% end %>

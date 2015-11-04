@@ -1,18 +1,19 @@
 <h1><%= (@num_products) %> Products in List</h1>
 <hr>
 <%= @message %>
+<table>
+  <tr>
+    <th>Product name</th>
+    <th>Price</th>
+    <th>Product code</th>
+    <th>Description</th>
+  </tr>
 <% @products.each do |product| %>
-<div>
-  <%= link_to product.name, product_path(product.id) %>
-</div>
-<div>
-  <%= "Price: " + product.price %>
-</div>
-<div>
-  <%= "Product code: " + product.code %>
-</div>
-<div>
-  <%= "Product description: " + product.description %>
-</div>
-  <hr>
+  <tr>
+    <td><%= link_to product.name, product_path(product.id) %></td>
+    <td><%=  product.price %></td>
+    <td><%=  product.code %></td>
+    <td><%= product.description.truncate(20) %></td>
+  </tr>
 <% end %>
+</table>
